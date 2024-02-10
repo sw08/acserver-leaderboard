@@ -1,0 +1,101 @@
+body,
+#container {
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    color: white;
+    background-color: #000000;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+img,
+h3,
+h4 {
+    display: inline-block;
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+th#nameHeader {
+    width: 30%;
+}
+
+th#modelHeader {
+    width: 30%;
+}
+
+th#laptimeHeader {
+    width: 20%;
+}
+
+th#lapsHeader {
+    width: 20%;
+}
+
+
+#leaderboard {
+    margin: auto;
+    width: 65vw;
+    border-top: 2px solid white;
+    border-bottom: 2px solid white;
+    border-collapse: collapse;
+}
+
+tr {
+    border-bottom: 1px solid #222222;
+    border-top: 1px solid #222222;
+}
+
+th {
+    border-bottom: 1px solid white;
+}
+
+td {
+    text-align: center;
+    border-bottom: 1px solid #222222;
+    border-top: 1px solid #222222;
+}
+
+.carImg {
+    vertical-align: middle;
+    height: 10vh;
+
+}
+
+.model {
+    vertical-align: middle;
+}
+
+#title {
+    padding-left: 2vw;
+    background-color: #222222;
+    height: 10vh;
+    width: 98vw;
+}
+
+.space {
+    width: 100vw;
+    height: 10vh;
+}
+
+#nav {
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20vw;
+}
+
+
+::-webkit-scrollbar {
+    display: none;
+}

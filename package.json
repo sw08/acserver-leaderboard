@@ -1,0 +1,19 @@
+{
+  "name": "assetto-server-leaderboard",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "run": "node app.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "acserver-plugin": "^1.1.4",
+    "express": "^4.18.2",
+    "ini": "^4.1.1",
+    "node-cache": "^5.1.2",
+    "pug": "^3.0.2",
+    "sqlite3": "^5.1.7"
+  }
+}

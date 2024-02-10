@@ -1,0 +1,43 @@
+doctype html 
+html 
+    head
+        link(rel='stylesheet', href='/style.css')
+        link(rel='icon', href='/default.jpg')
+        script(type='text/javascript' src='/script.js')
+        title AC Leaderboard: #{track}
+    body
+        #container 
+            #title
+                a(href='/')
+                    h3=title
+            #content
+                h1(style='text-align:center;') Track: #{track}
+                table#leaderboard
+                    tr
+                        th#nameHeader
+                            h3 Name
+                        th#modelHeader
+                            h3 Model
+                        th#laptimeHeader
+                            h3 Laptime 
+                        th#lapsHeader
+                            h4 Laps
+                    each record in records
+                        tr
+                            td.name
+                                h3=record.name
+                            td.model
+                                img.carImg(src=`/img/${record.model}`)
+                                h4=record.modelName
+                            td.laptime
+                                h3.laptimeString=record.laptime
+                            td.laps
+                                h3=record.laps
+                .space
+                div#nav
+                    unless page === 0
+                        a(href=`/${page-1}`, style='margin-right: 2vw')
+                            h3 Previous
+                    a(href=`/${page+1}`)
+                        h3 Next
+                .space
