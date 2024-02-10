@@ -4,14 +4,15 @@ This is a simple leaderboard plugin for assetto corsa multiplayer server.
 
 ## Installation
 ```
-$ git clone https://github.com/sw08/assetto-server-leaderboard.git
-$ ls assetto-server-leaderboard
+$ git clone https://github.com/sw08/acserver-leaderboard.git
+$ ls acserver-leaderboard
 $ npm i
 ```
 You need the recent version of nodejs installed as well.
 
 ## Configuration
 First, you have to edit `server_cfg.ini` to setup udp settings.
+
 ![Port example](/port_example.png)
 
 The hostname and port #1 are the address which the plugin will be listening on, and the port #2 is where the server will be transmitting data.
@@ -19,8 +20,8 @@ The hostname and port #1 are the address which the plugin will be listening on, 
 You can change them to whatever you want, but don't set port #1 and #2 the same.
 In this example, we'll use the data same as the image.
 
-Then make a file named `config.json`, and locate it in the same folder as `app.js`.
-config.json consists of 5 properties, which are: 
+Then make a file named `config.json`, and locate it in the same folder as `app.js`.  
+`config.json` consists of 5 properties, which are: 
 ```json
 {
     "SERVERDIR": ".../steamapps/common/assettocorsa/server",
@@ -31,7 +32,7 @@ config.json consists of 5 properties, which are:
 }
 ```
 * `SERVERDIR`: the directory where `acServer.exe` is located
-* `DBDIR`: the directory where the records will be saved(they're separated by tracks)
+* `DBDIR`: the directory where the records will be saved (data will be stored in separate files by tracks)
 * `UDPPORT`: the port #1 you set up above
 * `WEBPORT`: the port the leaderboard web page will be hosted at
 * `WEBTITLE`: the title which will be displayed at the top of the page
