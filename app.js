@@ -47,7 +47,7 @@ pluginApp.on(server.PROTOCOLS.LAP_COMPLETED, async (data) => {
         pluginApp.sendChat(data.car_id, `개인 랩타임 갱신: ${tools.formatLaptime(data.laptime)}`);
         db.addLaptime(data.car_id, record.guid, record.model, data.laptime);
     } else if (data.laptime < record.laptime) {
-        pluginApp.sendChat(data.car_id, `개인 랩타임 갱신: ${tools.formatLaptime(data.laptime)} (${(data.laptime - record.laptime) / 1000}s)`); W
+        pluginApp.sendChat(data.car_id, `개인 랩타임 갱신: ${tools.formatLaptime(data.laptime)} (${(data.laptime - record.laptime) / 1000}s)`);
         db.updateLaptime(data.car_id, record.guid, record.model, data.laptime);
     }
 });
