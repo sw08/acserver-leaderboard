@@ -42,7 +42,7 @@ pluginApp.on(server.PROTOCOLS.CONNECTION_CLOSED, async (data) => {
 pluginApp.on(server.PROTOCOLS.LAP_COMPLETED, async (data) => {
     db.addLap(data.car_id);
     if (data.cuts > 0) return;
-    if (data.laptime < 120000) return;
+    if (data.laptime < config.MINLAPTIME) return;
     const record = db.getConnection(data.car_id);
     if (record.laptime === 0) {
         pluginApp.sendChat(data.car_id, `개인 랩타임 갱신: ${tools.formatLaptime(data.laptime)}`);
@@ -50,6 +50,21 @@ pluginApp.on(server.PROTOCOLS.LAP_COMPLETED, async (data) => {
     } else if (data.laptime < record.laptime) {
         pluginApp.sendChat(data.car_id, `개인 랩타임 갱신: ${tools.formatLaptime(data.laptime)} (${(data.laptime - record.laptime) / 1000}s)`);
         db.updateLaptime(data.car_id, record.guid, record.model, data.laptime);
+    }
+});
+
+pluginApp.on(server.PROTOCOLS.CHAT, async (data) => {
+    if (db.getConnection(data.car_id).guid !== config.OWNERGUID) return;
+    if (data.message.startsWith('!set')) {
+        const guid = data.message.split(' ')[1];
+        const laptime = data.message.split(' ')[2];
+        const model = data.message.split(' ')[3];
+        if (await db.getRecord(guid)) {
+            this.db.run('update record set laptime=? and model=? where guid=?', [laptime, model, guid]);
+        } else {
+            const name = data.message.split(' ')[4];
+            this.db.run('insert into record VALUES (?, ?, ?, ?, ?)', [guid, name, model, laptime, 1])
+        }
     }
 });
 
