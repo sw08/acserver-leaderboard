@@ -42,6 +42,7 @@ pluginApp.on(server.PROTOCOLS.CONNECTION_CLOSED, async (data) => {
 pluginApp.on(server.PROTOCOLS.LAP_COMPLETED, async (data) => {
     db.addLap(data.car_id);
     if (data.cuts > 0) return;
+    if (data.laptime < 120000) return;
     const record = db.getConnection(data.car_id);
     if (record.laptime === 0) {
         pluginApp.sendChat(data.car_id, `개인 랩타임 갱신: ${tools.formatLaptime(data.laptime)}`);
