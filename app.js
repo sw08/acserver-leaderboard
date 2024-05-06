@@ -65,11 +65,12 @@ pluginApp.on(server.PROTOCOLS.CHAT, async (data) => {
             const name = data.message.split(' ')[4];
             db.db.run('insert into record VALUES (?, ?, ?, ?, ?)', [guid, name, model, laptime, 1])
         }
-        pluginApp.sendChat(data.car_id, '변경 완료' + (record ? `원 랩타임: ${record}` : ""));
+        pluginApp.sendChat(data.car_id, '변경 완료' + (record ? `원 랩타임: ${record.laptime}` : ""));
     } else if (data.message.startsWith('!remove')) {
         const guid = data.message.split(' ')[1];
         const record = await db.getRecord(guid);
-        pluginApp.sendChat(data.car_id, '삭제 완료' + (record ? `원 랩타임: ${record}` : ""));
+        db.db.run('delete from record where guid=?', [guid]);
+        pluginApp.sendChat(data.car_id, '삭제 완료' + (record ? `원 랩타임: ${record.laptime}` : ""));
     }
 });
 
