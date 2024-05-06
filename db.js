@@ -31,6 +31,7 @@ class DB {
         });
         this.cache = new cache({ stdTTL: 1800 });
         this.ranking = new cache({ stdTTL: 600, checkperiod: 300 });
+        this.carNames = {};
     }
     addLap(car_id) {
         this.connection[car_id].laps++;
