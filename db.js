@@ -91,7 +91,7 @@ class DB {
         this.db.run('update record set laps=? where guid=?', [conn.laps, conn.guid]);
     }
     getCarName(model) {
-        if (!this.carNames.includes(model)) {
+        if (!(model in this.carNames)) {
             try {
                 const car = JSON.parse(fs.readFileSync(path.join(serverDir, 'content', 'cars', model, 'ui', 'ui_car.json')));
                 this.carNames[model] = car.name;
