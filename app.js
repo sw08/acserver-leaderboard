@@ -60,10 +60,10 @@ pluginApp.on(server.PROTOCOLS.CHAT, async (data) => {
         const laptime = data.message.split(' ')[2];
         const model = data.message.split(' ')[3];
         if (await db.getRecord(guid)) {
-            this.db.run('update record set laptime=?, model=? where guid=?', [laptime, model, guid]);
+            db.db.run('update record set laptime=?, model=? where guid=?', [laptime, model, guid]);
         } else {
             const name = data.message.split(' ')[4];
-            this.db.run('insert into record VALUES (?, ?, ?, ?, ?)', [guid, name, model, laptime, 1])
+            db.db.run('insert into record VALUES (?, ?, ?, ?, ?)', [guid, name, model, laptime, 1])
         }
     }
 });
