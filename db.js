@@ -82,7 +82,7 @@ class DB {
     }
     updateLaptime(car_id, guid, model, laptime) {
         this.connection[car_id].laptime = laptime;
-        this.db.run('update record set laptime=? and model=? where guid=?', [laptime, model, guid]);
+        this.db.run('update record set laptime=?, model=? where guid=?', [laptime, model, guid]);
         this.cache.del(guid);
     }
     updateLaps(car_id) {
